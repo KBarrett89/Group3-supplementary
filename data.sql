@@ -26,6 +26,6 @@ alter table user_authority add constraint FKpqlsjpkybgos9w2svcri7j8xy foreign ke
 INSERT INTO `authority`(`name`) VALUES ('ROLE_ADMIN');
 INSERT INTO `authority`(`name`) VALUES ('ROLE_USER');
 
-INSERT INTO `user` (`username`, `password`,`created`) VALUES ('admin','whatever the christ the hash value of admin is');
+INSERT INTO `user` (`username`, `password`) VALUES ('admin','whatever the christ the hash value of admin is');
 
 INSERT INTO `user_authority`(`authority_id`, `user_id`) VALUES (1, 1);
