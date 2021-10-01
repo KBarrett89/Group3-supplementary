@@ -21,6 +21,7 @@ Presentation slides:
         ◦ Data Structure Planning:
     • Backend
     • Frontend
+    • Security
     • Testing
     • DevOps
     • Application User Guide
@@ -173,15 +174,28 @@ A simple auditing strategy has been implemented to record the numberplate search
 
 * * * * *
 
+### Security
+
+Project set up with Spring Security in the Backend.
+
+Security creates custom endpoint for authentication, connects to a user table in the RDS database and verifies http requests via jwt. The authenticate endpoint is available without a jwt but requires a username and password, all other http requests require a valid jwt for authentication and registering a new user requires a valid jwt token and admin permissions.
+
+Frontend refuses access to app unless valid login is put in, redirecting all traffic to the login page. Logging in generates a jwt token which is passed into all http requests from the front-end to the backend, authenticating them. The frontend checks if the jwt token is expired on every Route change and redirects the user to the Login page when the jwt token has expired. Clicking the logout button clears the user’s session and returns them to the login page and redirects all traffic once again until the user has re-authenticated.
+
+
+
+
+* * * * *
+
 ### Testing
 
 Unit tests using JUnit are ran on all the functions in the services class of the backend to check the database (H2 console) is returning the correct values. 
 
-![Image 18](ReadmeImages/24.UnitTesting.png)
+![Image 19](ReadmeImages/24.UnitTesting.png)
 
 An Integration test is ran on the get request to ensure that the correct infoDTO is returned by the search.
 
-![Image 17](ReadmeImages/23.IntergratedTesting.png)
+![Image 20](ReadmeImages/23.IntergratedTesting.png)
 
 For our manual testing we used a H2 console as a stand in for an RDS, whilst creating the backend. We also used Postman to send Get requests, whilst the frontend was being developed.
 
@@ -189,9 +203,6 @@ For our manual testing we used a H2 console as a stand in for an RDS, whilst cre
 
 ### Devops
 
-* * * * *
-
-### Application User Guide
 
 * * * * *
 
